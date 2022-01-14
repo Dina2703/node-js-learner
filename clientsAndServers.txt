@@ -13,3 +13,19 @@ ____________GET_________________
 _____________________HTTP _______________________
 This communication between the server and the client browser is via HTTP(HyperText Transfer Protocol).
 HTTP - is a set of instructions which dictate how communication occurs.
+
+
+___________________CREATING A SERVER _______________________
+in Node we manually create the server which lives on the backend of our website.
+And this server that listens for request from the browser and then decides what responses to send to the browser.
+Now we will focus on acreting a local server on our computer using node which can  then be used to actively listen for requestd and 
+respond to them.
+
+_________________Localhost____________________
+* Localhost is like a domain name on the web(like google.com). 
+Which takes us to a very specific IP address called a loopbakc IP address. This IP address 127.0.0.1 and it poits directly back to your own computer. That means when we're connecting to the local host domain in a browser, the browser connecting back to our own computer which is then acting as a host for our website.
+So localhost means listen for requests coming to our own computer. This is how we use our own computer as a host when we're developing a website.
+
+____________________Port Numbers_______________________
+* Port numbers are like 'doors'(channels on our computer)  into a computer.
+localhost:3000 --- sp when we use localhost we also type the port number, so browser then knows to connect to our own computer via this particular port number, which is where our server is going to listening. 
