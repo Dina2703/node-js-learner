@@ -18,9 +18,13 @@ const readStream = fs.createReadStream("./docs/blog3.txt", {
 
 //inside this method: first we need to say what file we want to write to
 const writeStream = fs.createWriteStream("./docs/blog4.txt");
-readStream.on("data", (chunk) => {
-  console.log("---NEW CHUNK----");
-  console.log(chunk);
-  writeStream.write("\nNEW CHUNK\n");
-  writeStream.write(chunk);
-});
+// readStream.on("data", (chunk) => {
+//   console.log("---NEW CHUNK----");
+//   console.log(chunk);
+//   writeStream.write("\nNEW CHUNK\n");
+//   writeStream.write(chunk);
+// });
+
+//a PIPE = must be from a readable stream to a writable one.
+//piping does the same thing which we did on lines 21-25, but much cleaner.
+readStream.pipe(writeStream);
