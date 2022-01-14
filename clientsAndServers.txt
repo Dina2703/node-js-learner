@@ -1,0 +1,15 @@
+_____________IP Addresses  & Domains___________________
+
+All computers connected to the Internet have a unique IP address to identify.
+
+Some special computers are known as hosts, meaning they host websites on the Internet. If you create and publish a website it will be hosted on a computer somewhere and that computer will have an IP address to identify it. On that host computer we need to know its IP address to do it, if want ot connect to a server. To do it we could then type the IP into a browser if we wanted to  in the address bar to connect our server.
+ IP address is a series of numbers,and we use Domain names  to mask these IP addresses.
+ And when we type a domain name into a browser(in the address bar) and hit enter browser will find the IP address associated with it  and then it will use that IP to find the computer hosting the website and communicate with that and this way we can send requests and get back responses to and from it. 
+
+
+____________GET_________________
+ The type of request when we type something into the browser and hit enter that is a GET request. Every time when we go to a different web page either by a link or directly typing into the adress bar we're sending a GET request to the server to get a ceratin resource. 
+
+_____________________HTTP _______________________
+This communication between the server and the client browser is via HTTP(HyperText Transfer Protocol).
+HTTP - is a set of instructions which dictate how communication occurs.
