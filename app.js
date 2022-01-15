@@ -1,5 +1,6 @@
 //require("express") returns a function which we store in express const
 const express = require("express");
+const res = require("express/lib/response");
 //express app. now invoking that function to create an instance of an Express app, which we're storing in app const.
 const app = express();
 
@@ -17,6 +18,20 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
   //res.send("<p>About page from Express</p>");
   res.sendFile("./views/about.html", {
+    root: __dirname,
+  });
+});
+
+//redirects
+app.get("/about-us", (req, res) => {
+  res.redirect("/about");
+});
+
+// 404 page
+//use() method we use to create  middleware and fire middleware functions in Express. If the code reaches this point, if we don't have a match up to here, because Express goes top to button looking for match in URL path to response fro the request, we're sending this 404 page to the browser. 
+//The position of the use() for redirecting is matter it should be the last in the routing system.
+app.use((req, res) => {
+  res.sendFile("./views/404.html", {
     root: __dirname,
   });
 });
