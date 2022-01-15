@@ -29,3 +29,15 @@ So localhost means listen for requests coming to our own computer. This is how w
 ____________________Port Numbers_______________________
 * Port numbers are like 'doors'(channels on our computer)  into a computer.
 localhost:3000 --- sp when we use localhost we also type the port number, so browser then knows to connect to our own computer via this particular port number, which is where our server is going to listening. 
+
+________________ Status Codes _______________________
+Status codes describe the type of response sent to the browser
+1XX - informational responses/ request received/ processing
+2XX - OK/ success codes/successfully received
+3XX - Resource moved/codes for redirects/ further action must ba taken
+4XX - Not found/ client error codes/request doesn't have what it needs
+5XX - Internal server error/Server error codes/ Server failed to fulfill a valid request
+200 - OK,
+301 - Resorce moved,
+404 - Not found,
+500 - internal server error
