@@ -7,8 +7,22 @@ const server = http.createServer((req, res) => {
 
   //setting the header for the content
   res.setHeader("Content-Type", "text/html"); //html data
+
+  let path = "../views/";
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      break;
+    case "/about":
+      path += "about.html";
+      break;
+    default:
+      path += "404.html";
+      break;
+  }
+
   //send an html file. data - means data from the file we're reading from
-  fs.readFile("../views/index.html", (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end(data);
