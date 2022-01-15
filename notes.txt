@@ -44,3 +44,8 @@ Status codes describe the type of response sent to the browser
 
 _________________NODEMON _______________________
 nodemon and file name - (nodeman server) - it's going to listen for requests on port 3000's and it's set up a live reload server and it's watching our code, in every cahnge we make it automatically restarts the server. Now we can start nodemon server and work on our project without manually restarting the server. 
+
+
+
+__________________EXPRESS ________________
+Express is a framework that helps us to easily manage our routing requests server-side logic and reponses in a much elegant way, and it makes our code easier to read and update and extend.
