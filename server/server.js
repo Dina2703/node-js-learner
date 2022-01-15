@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
       path += "about.html";
       res.statusCode = 200;
       break;
-    case "/about-me":
+    case "/about-us":
       res.statusCode = 301;
       res.setHeader("Location", "/about"); //to redirect to the new URL
       res.end();
