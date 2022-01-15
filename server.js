@@ -1,15 +1,24 @@
 //first thing is to require http module
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+  //lodash
+  const num = _.random(0, 20);
+  console.log(num);
+
+  const greet = _.once(() => {
+    console.log("Hello there");
+  });
+  greet();
+
 
   //setting the header for the content
   res.setHeader("Content-Type", "text/html"); //html data
 
   //ROUTING SYSTEM
-  let path = "../views/";
+  let path = "./views/";
   switch (req.url) {
     case "/":
       path += "index.html";

@@ -1,0 +1,26 @@
+{
+  "name": "node_js",
+  "version": "1.0.0",
+  "description": "learning course",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dina2703/node-js-learner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dina2703/node-js-learner/issues"
+  },
+  "homepage": "https://github.com/Dina2703/node-js-learner#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
