@@ -1,25 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog | <%= title %></title>
-  </head>
+  <%- include('./partials/head.ejs')%>
   <body>
-    <nav>
-      <div class="site-tile">
-        <a href="/">
-          <h1>Blog Home</h1>
-        </a>
-     
-      </div>
-      <ul>
-        <li><a href="/">Blogs</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blogs/create">New Blogs</a></li>
-      </ul>
-    </nav>
+    <%- include('./partials/nav.ejs')%>
     <div class="about content">
       <h2>About Us</h2>
       <p>
@@ -41,5 +24,6 @@
         aliquid vitae neque, inventore illo.
       </p>
     </div>
+    <%- include('./partials/footer.ejs')%>
   </body>
 </html>
