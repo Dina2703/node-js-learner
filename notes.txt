@@ -49,3 +49,8 @@ nodemon and file name - (nodeman server) - it's going to listen for requests on 
 
 __________________EXPRESS ________________
 Express is a framework that helps us to easily manage our routing requests server-side logic and reponses in a much elegant way, and it makes our code easier to read and update and extend.
+
+________________________ejs tags________________________
+<% const name = 'mario' %> this line going to run as JavaScript on the server side(not on the front end).
+Now to use the value of the name constant - <%= name %>. When we're out putting a single value put = right after the opening ejs tag.
+We use ejs tags for passing some kinda data to the browser, when rendering the view, pass a data as a second parameter.

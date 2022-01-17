@@ -15,10 +15,10 @@ app.listen(3000);
 //first arg is what path or URL you want to listen to. second arg is callback funtion which takes request and response object.
 //Express going to look inside the views folder, then find the index and using jsx view engine to render  that and send it back to the browser.
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { title: "home" });
 }); //if the path is relative we need to tell Express where is it relative from, because default is going to look for an absolute path, the path from the root of our computer. So what we need to do is pass second arg which is an obj, where we can specify what the root should be(root: __dirname) which is NODE_JS folder.
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", { title: "about" });
 });
 
 // //redirects
@@ -27,12 +27,12 @@ app.get("/about", (req, res) => {
 // });
 
 app.get("/blogs/create", (req, res) => {
-  res.render("create");
+  res.render("create", { title: "create" });
 });
 
 // 404 page
 //use() method we use to create  middleware and fire middleware functions in Express. If the code reaches this point, if we don't have a match up to here, because Express goes top to button looking for match in URL path to response fro the request, we're sending this 404 page to the browser.
 //The position of the use() for redirecting is matter it should be the last in the routing system.
 app.use((req, res) => {
-  res.status(404).render("404");
+  res.status(404).render("404", { title: "404" });
 });
