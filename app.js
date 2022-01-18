@@ -10,21 +10,10 @@ const app = express();
 // below we're saying to use ejs as our view engine of choice
 app.set("view engine", "ejs"); // automatically Express and ejs is going to look in the views folder for ejs views.
 
-app.listen(4000);
+app.listen(3000);
 
-//next() to say server, move on to the next code, otherwise it stacks after the last line of code inside the middleware.
-// app.use((req, res, next) => {
-//   console.log("new request made: ");
-//   console.log("host: ", req.hostname);
-//   console.log("path: ", req.path);
-//   console.log("method: ", req.method);
-//   next();
-// });
-// app.use((req, res, next) => {
-//   console.log("in the next middleware: ");
-
-//   next();
-// });
+// middleware & static files(css. images we ganna make public)
+app.use(express.static("public"));// that means anything inside public folder is gonna be abailable as a static file to the browser.
 
 //third-party middleware
 app.use(morgan("dev"));
