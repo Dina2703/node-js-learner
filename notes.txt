@@ -58,3 +58,17 @@ We use ejs tags for passing some kinda data to the browser, when rendering the v
 _____________________EJS Templates______________________
 EJS Templates are processed through the EJS view engine on the server.
 Our View files live on the server and where we want render one through the browser that view files is passed into the view engine the EJS View Engine to be processed, the Engine looks for any knid of dynamic content, variables, loops conditions etc, then whenever it finds those it figures out the resulting HTML code fro those parts and in the end it spits out a valid HTML page based on the template we wrote and then the HTML page with the resulting data inside it will be returned to the Browser. THIS WHOLE PROCESS IS CALLED SERVER-SIDE RENDERING.
+
+_____________________Middleware___________________
+Code which runs (on the  server) between getting a request and sending a response.
+When there is a multiple middleware codes middleware - runs from top to bottom in our code and it runs that way until we exit the process or explicity send a response to  the browser..
+app.use(func) is generally used to run some middleware code. As  well as the app.get('/', func).
+
+app.get('/', func) is only fires functions for get requests to a certain route.
+app.use(func) method runs for evey type of request to all routes including POST requests.
+
+_______________________Middleware Examples_______________________
+* Logger middleware to log details of every request.
+* Authentication check middleware for protected routes.
+* Middleware to parse JSON data from requests.
+* return 404 pages
