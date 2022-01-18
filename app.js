@@ -1,5 +1,7 @@
 //require("express") returns a function which we store in express const
 const express = require("express");
+const morgan = require("morgan");
+
 const res = require("express/lib/response");
 //express app. now invoking that function to create an instance of an Express app, which we're storing in app const.
 const app = express();
@@ -11,18 +13,21 @@ app.set("view engine", "ejs"); // automatically Express and ejs is going to look
 app.listen(4000);
 
 //next() to say server, move on to the next code, otherwise it stacks after the last line of code inside the middleware.
-app.use((req, res, next) => {
-  console.log("new request made: ");
-  console.log("host: ", req.hostname);
-  console.log("path: ", req.path);
-  console.log("method: ", req.method);
-  next();
-});
-app.use((req, res, next) => {
-  console.log("in the next middleware: ");
+// app.use((req, res, next) => {
+//   console.log("new request made: ");
+//   console.log("host: ", req.hostname);
+//   console.log("path: ", req.path);
+//   console.log("method: ", req.method);
+//   next();
+// });
+// app.use((req, res, next) => {
+//   console.log("in the next middleware: ");
 
-  next();
-});
+//   next();
+// });
+
+//third-party middleware
+app.use(morgan("dev"));
 
 app.get("/", (req, res) => {
   const blogs = [
