@@ -215,3 +215,17 @@ app.get("/single-blog", (req, res) => {
       console.log(err);
     });
 });
+
+______________________REQUEST TYPES__________________________
+GET requests --- to get a resource (from the server whether that be JSON data from the database or webpage).
+POST requests --- to create new data in our database(ex, a new blog in our case).
+DELETE requests --- to delete data from the database.
+PUT requests --- to update existing data in the database.
+
+--------- simple Route structure---------
+localhost:3000/blogs                  GET
+localhost:3000/blogs/create           GET
+localhost:3000/blogs                 POST
+localhost:3000/blogs/:id              GET (a single blog)
+localhost:3000/blogs/:id           DELETE 
+localhost:3000/blogs/:id              PUT 
