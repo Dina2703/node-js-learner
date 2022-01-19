@@ -25,6 +25,7 @@ app.set("view engine", "ejs"); // automatically Express and ejs is going to look
 
 // middleware & static files(css. images we ganna make public)
 app.use(express.static("public")); // that means anything inside public folder is gonna be available as a static file to the browser.
+app.use(express.urlencoded({ extended: true })); // this middleware  comes with express, which passes data from the form into a  workable format that we can use and it attaches the data to req object in callback function which we're passing in POST request.
 app.use(morgan("dev")); //third-party middleware
 
 //routes
@@ -37,11 +38,26 @@ app.get("/about", (req, res) => {
 });
 
 //blog routes
+//GET request
 app.get("/blogs", (req, res) => {
   Blog.find()
     .sort({ createdAt: -1 }) //it's gonna sort from the newest to the oldest(-1)
     .then((result) => {
       res.render("index", { title: "All Blogs", blogs: result }); //passing result as value of blogs(property name), since index view expects blogs
+    });
+});
+
+//POST request
+app.post("/blogs", (req, res) => {
+  const blog = Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 

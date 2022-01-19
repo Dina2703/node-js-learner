@@ -229,3 +229,14 @@ localhost:3000/blogs                 POST
 localhost:3000/blogs/:id              GET (a single blog)
 localhost:3000/blogs/:id           DELETE 
 localhost:3000/blogs/:id              PUT 
+
+-----------create.ejs file.snippet from the form-------------
+      <form action="/blogs" method="POST">// when we submit this form, we send data as body with post request to this '/blogs' URL, we can access that on the server.
+      <input type="text" id="title"  name='title' equired />// we use 'name' property to access the form data.
+------app.js file---------
+app.use(express.urlencoded({ extended: true }));// this middleware  comes with express, which passes data from the form into a  workable format that we can use and it attaches the data to req object in callback function which we're passing in POST request. 
+{ extended: true } this is optional
+urlencoded() method takes the URL encoded data that comes along for the ride(from the form) and it passes that into an object that we can use on the request object.
+app.post('/blogs', (req, res) => {
+req.body                //now, req.body contains all the data from the webform, that we submitted.
+});
