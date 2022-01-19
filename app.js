@@ -1,19 +1,28 @@
 //require("express") returns a function which we store in express const
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
 
 const res = require("express/lib/response");
 //express app. now invoking that function to create an instance of an Express app, which we're storing in app const.
 const app = express();
 
+//connect to mongoDB
+const dbURI =
+  "mongodb+srv://user-1:test123@cluster0.xbjwj.mongodb.net/Cluster0?retryWrites=true&w=majority";
+//connect Mongoose to the database from MongoDb Cloud.
+
+mongoose
+  .connect(dbURI)
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
+
 //register view engine
 // below we're saying to use ejs as our view engine of choice
 app.set("view engine", "ejs"); // automatically Express and ejs is going to look in the views folder for ejs views.
 
-app.listen(3000);
-
 // middleware & static files(css. images we ganna make public)
-app.use(express.static("public"));// that means anything inside public folder is gonna be abailable as a static file to the browser.
+app.use(express.static("public")); // that means anything inside public folder is gonna be available as a static file to the browser.
 
 //third-party middleware
 app.use(morgan("dev"));

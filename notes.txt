@@ -72,3 +72,86 @@ _______________________Middleware Examples_______________________
 * Authentication check middleware for protected routes.
 * Middleware to parse JSON data from requests.
 * return 404 pages
+
+______________________mongoDB_________________________________________________________________
+---------NoSQL vs SQL--------------- they structure DATA differently. 
+So sequel(SQL) databases use table, rows and columns to store records of data.
+No sequel (NoSQL) databases make use of collections and documents. MongoBD is NoSQL database.
+How the NoSQL works ---- it split up into collections and they are a bit like tables in SQL, each collection 
+would be used to store a particular type of data for example: User Collection would store user documents, and Blog Collections  would store blog documents. You can have as many collections as you want, but important things is each one would contain only one type of document.
+Each collection would store documents. Each document represents a single item of data. this data looks like JSON or JS object, kew-value pairs.
+From our code we could connect to a collection like the User in MongoDB and then we could either save, read, update or delete documents inside the collection.
+
+_______________MongoDB Setup $ Atlas_______________
+There is a couple different options, that we can use. we can either install MongoDB on our computer locally and use and deploy that or we could use a cloud database which is already hosted for us and it quiet a lot easier for us to manage. We gonna use MongoDB Atlas.
+
+How to start a project on MongoDB Atlas: 
+1. Create Cluster. Give a Cluster  Name.
+2. Create a database and a collection inside it. Click on "COLLECTIONS" and "Add My Own Data", name the Database(testProject) and Collection(like blogs), then click "Create".
+3. Create a User, so we can use it for database access from our code, form the server side code. 
+"+ ADD NEW DATABASE USER" give it a name and a password. And give it a "Read and Write to any database" access, then 'Add User'. Now only the valid user(Admin) can access our database.
+4. Connect the database and and backend code. In Clusters tab click "CONNECT", and choose 'Connect your application'. Copy the connection string, and go back over your app.js file and under const app = express() create a new const (dbURI) and save the copied connection string as its value. Then replace <username> and <password> with actual username and password that your created as a Admin. And put the cluster into URI name ....mongodb.net/clusterNameGoesHere?retryWrites.....
+5. To connect we will use Mongoose, to connect and interact with the database
+(there is a other ways to connect database and backend)
+
+
+____________________________Mongoose__________________________
+* Mongoose is an ODM library - Object Document Mapping library.
+Basically means that it wraps the standard MongoDB API and it provides us with a much easier way to connect to and communicate with database. now it does this by allwing us to create simple data models which have database query methods to create, get delete and update databased documents. Mongoose queries the correct database collection for us based on the name of the model we use and then it performs the action required and returns us a response. 
+User.get(), User.findById(), Blog.deleteOne() methods.
+
+-----------------------Schemas & Models -----------------------
+* Schema defines the structure of a type of data / document.
+    --- Properties and property types
+    npm install mongoose (it's third- party library)
+examples: 
+User Schema: 
+- name (string), required
+- age (number)
+- bio (string), required
+
+Blog Schema: 
+- title (string), required
+- snippet (string), required
+- body (string), required
+
+The next thing is creating a MODEL based on that SCHEMA.
+ * Models allow us to communicate with databse collections.
+ example:
+ Blog model created based on a blog schema. This blog modal will have static and instance methods --> get, save, delete, etc ---> data from the Blog's Collection.
+
+STEPS: 
+1. require("mongoose") returns a function which we store in 
+------const mongoose = require("mongoose");
+2. connect Mongoose to the database from MongoDb Cloud.
+//it's an asynchronous task it goes out and it takes some time to do.
+//we put app.listen() as callback for mongoose, to wait until the connection has been made by mongoose, the server starts listening for requests, because if user requests fro home page, we can't show that before the connection to the database has been established.
+-------mongoose.connect(dbURI)
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
+3. Create a new Models folder inside your project folder. Inside create blog.js 
+Inside the file: 
+------const mongoose = require("mongoose");
+const Schema = mongoose.Schema;// it's like a constuctor.
+--------create Schema--------
+const blogSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  snippet: {
+    type: String,
+    required: true,
+  },
+  body: {
+    type: String,
+    required: true,
+  },
+}, { timestamp: true });// this creates a new instance of a schema object. The first argument is object which is describes the structure of the document we want to store in our blogs collection. The second argument is optional, timestamp property which auto generates, and everytime we update or create a blog document, timestamp auto assigns values to those properties for us.
+------------create Modal------------
+4. Modal is a thing that surrounds the schema and then provides us with an interface by which to communicate with a database collection for that document type.
+//Create a new const to store your model. The first argument is the name of this model, which is Blog in our case here, mongoose gonna look to this name and pluralize(means it will look Blogs) it and look for that collection inside the database whenever we use this name in the future to communicate with the database.
+The sonde argument is the schema name we want to base this model on, what type of objects  and we're going to store inside this collection.
+const Blog = mongoose.model('Blog', blogSchema )
+5. Export this project from the file so we can use it.
+module.exports = Blog;
