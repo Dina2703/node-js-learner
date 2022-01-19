@@ -82,7 +82,17 @@ app.get("/blogs/:id", (req, res) => {
     });
 });
 
-
+//DELETE request
+app.delete("/blogs/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then((result) => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //The position of the use() for redirecting is matter it should be the last in the routing system.
 //404 page

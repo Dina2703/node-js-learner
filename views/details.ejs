@@ -12,5 +12,23 @@
     </div>
 
     <%- include("./partials/footer.ejs") %>
+
+    <script>
+      //anything inside it runs in the browser, not in the server.
+      const trashcan = document.querySelector("a.delete");
+
+      trashcan.addEventListener("click", (e) => {
+        const endpoint = `/blogs/${trashcan.dataset.doc}`; // we gonna send DELETE requets to that endpoint. dataset.doc grabs the value of data-doc, which is an id of the item we're deleting
+
+        fetch(endpoint, {
+          method: "DELETE", //it sends out a request from the JS to this endpoint with that blog ID in it, and it says this a DELETE request to the server.
+        })
+          .then((response) => response.json()) //the response is the JSON data that comes back to us, and we need to use json() on that , which retuns another promise where it passes this json data into a n actuall JS object that we can use.
+          .then((data) => (window.location.href = data.redirect)) //here we can get access to JS object, which we called data.
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
   </body>
 </html>

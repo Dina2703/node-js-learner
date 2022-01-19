@@ -244,3 +244,13 @@ req.body                //now, req.body contains all the data from the webform, 
 _____________________Route Parameters_______________________
 * The variable parts of the route that may change value
 localhost:3000/blogs/:id  -> id is variable, and its value could change. We want to be able to extract the variable value to see if it's an ID then we can query the database for the document with that ID and send it back to the user.
+
+----------DELETE request----------------
+When we click on delete button on the Details View, it send the request to the server, the server deletes that document based on the ID, it sends JSOn as a response to the front- end(to the browser)  
+.then((response) => response.json()) 
+we take that json and pass it into a JS object, we named it 'data', which we can use and we get access to it.
+.then((data) => console.log(data)) or
+.then((data) => (window.location.href = data.redirect))   redirect from the front-end. to the "/blogs" view, since that was the value for redirect in app.js
+--------IMPORTANT-----------
+When we send a request with fetch  the data from the javascript, we have to send the JSON or text data back to the front end (to the browser) from the server. But when a request from the webform, we can use redirect() method.
+We DON'T use redirect as a response. We send JSON data which have a redirect property. And when we recive that data back to fetch() in JS, the redirect property is gonna be URL to where want to redirect to, and that's gonna be done from the front end.
