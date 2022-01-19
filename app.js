@@ -6,6 +6,7 @@ const Blog = require("./models/blog");
 
 const res = require("express/lib/response");
 const { result } = require("lodash");
+const { render } = require("express/lib/response");
 //express app. now invoking that function to create an instance of an Express app, which we're storing in app const.
 const app = express();
 
@@ -37,6 +38,10 @@ app.get("/about", (req, res) => {
   res.render("about", { title: "about" });
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create", { title: "create a new Blog" });
+});
+
 //blog routes
 //GET request
 app.get("/blogs", (req, res) => {
@@ -44,6 +49,9 @@ app.get("/blogs", (req, res) => {
     .sort({ createdAt: -1 }) //it's gonna sort from the newest to the oldest(-1)
     .then((result) => {
       res.render("index", { title: "All Blogs", blogs: result }); //passing result as value of blogs(property name), since index view expects blogs
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 
@@ -61,9 +69,20 @@ app.post("/blogs", (req, res) => {
     });
 });
 
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "create" });
+//Route Parameters
+app.get("/blogs/:id", (req, res) => {
+  const id = req.params.id; //to excract the id use params. Whatever you call your variable comes after req.params.varName
+  console.log(id);
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { blog: result, title: "Blog Details" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
+
+
 
 //The position of the use() for redirecting is matter it should be the last in the routing system.
 //404 page

@@ -240,3 +240,7 @@ urlencoded() method takes the URL encoded data that comes along for the ride(fro
 app.post('/blogs', (req, res) => {
 req.body                //now, req.body contains all the data from the webform, that we submitted.
 });
+
+_____________________Route Parameters_______________________
+* The variable parts of the route that may change value
+localhost:3000/blogs/:id  -> id is variable, and its value could change. We want to be able to extract the variable value to see if it's an ID then we can query the database for the document with that ID and send it back to the user.
