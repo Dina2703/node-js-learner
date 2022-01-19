@@ -155,3 +155,23 @@ The sonde argument is the schema name we want to base this model on, what type o
 const Blog = mongoose.model('Blog', blogSchema )
 5. Export this project from the file so we can use it.
 module.exports = Blog;
+6. Import the Blog to the app.js 
+const Blog = require('./models/blog')
+7. use the Blog modal to ceate a new instance of it, pass an object with properties we defined in Scheme structure
+app.get("/add-blog", (req, res) => {
+  const blog = new Blog({
+    title: "new blog ",
+    snippet: "about my new blog",
+    body: "Lorem ipsum dolor sit amet consectetur",
+  }); //use the Blog modal to create a new instance of it, pass an object with properties wh're defined in Scheme structure
+
+  blog
+    .save()       -- this saves data to the database (in mongodb Atlas)
+    .then((result) => {
+      res.send(result); // we need to send back the result, so we can see it in the browser. You can find the data if type localhost:3000/add-blog' on the URL bar.
+    })
+    .catch((err) => {
+      console.log(err); // just in case if there is one.
+    });
+});
+
