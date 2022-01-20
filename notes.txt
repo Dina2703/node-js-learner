@@ -254,3 +254,19 @@ we take that json and pass it into a JS object, we named it 'data', which we can
 --------IMPORTANT-----------
 When we send a request with fetch  the data from the javascript, we have to send the JSON or text data back to the front end (to the browser) from the server. But when a request from the webform, we can use redirect() method.
 We DON'T use redirect as a response. We send JSON data which have a redirect property. And when we recive that data back to fetch() in JS, the redirect property is gonna be URL to where want to redirect to, and that's gonna be done from the front end.
+
+
+-----------------Express Router--------------------
+Express Router comes with Express, and we can use to manage all of our routes more efficiently, especially when the size of a project grows and you've got many different routes.
+Use Express Router to split our routes into different files and manage them in small group of routes that belong together, and it makes app more modular.
+
+We can separate all requests for te one View, like '/blogs', from the main app.js to blogRoutes.js. And at the top 
+const express = require('express')
+const router = express.Router(); //create a new instance of a router object. 
+And replace all 'app' words to 'router' in this blogRoutes.js, attaching all handlers to the router.
+It's like a mini app, but standing alone it doesn't do anything. 
+And at the bottom export this router, like so:
+module.exports = router;
+Then, in app.js import and use it ----> 
+const blogRoutes = require("./routes/blogRoutes");
+app.use(blogRoutes)
