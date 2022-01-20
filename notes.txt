@@ -279,7 +279,7 @@ it's usefull for a large projects!!!!!!!
 * Keeps code more modular, reusable & easier to read 
 ---Views are where we make our HTML templates that a user sees.
 ---Models are how we describe our data structure and we use then to interact with the database.
----Controllers will be the thing that forms the link between our Models and our Views. It's like a middlemen that use models to get data and then pass that data into View.
+---Controllers will be the thing that forms the link between our Models and our Views. It's like a middlemen that use models to get data and then pass that data into View. Kinda a LOGIC file
 The idea of using the controllers is that we just exptract those route handler functions into separate controller file, then we can just reference those controller functions in our routes file.
 
 So our Route file(like blogRoutes) matches incoming requests and it passes those requests to the correct controller function, the controller communicates with the appreopriate model to get data into a View and then View renders that data into its template  and it gets sent to the browser.
