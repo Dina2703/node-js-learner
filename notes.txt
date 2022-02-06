@@ -1,3 +1,9 @@
+nodemon app,
+ it's going to listen for requests on port 3000's
+then go to 
+http://localhost:3000
+
+
 _____________IP Addresses  & Domains___________________
 
 All computers connected to the Internet have a unique IP address to identify.
